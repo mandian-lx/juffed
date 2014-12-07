@@ -9,7 +9,7 @@
 
 Name:		juffed
 Version: 	0.10
-Release: 	7
+Release: 	8
 License:	GPLv2
 Source0:	http://sourceforge.net/projects/juffed/files/Releases/%{version}/%{name}-%{version}-%{minor_version}.tar.bz2
 Url:		http://juffed.com
