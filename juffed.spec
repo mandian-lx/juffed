@@ -26,6 +26,7 @@ BuildRequires:	cmake(Qt5Network)
 BuildRequires:	cmake(Qt5Xml)
 BuildRequires:	cmake(Qt5Widgets)
 BuildRequires:	pkgconfig(enca)
+BuildRequires:	qmake5
 BuildRequires:	qscintilla-qt5-devel
 BuildRequires:	qtsingleapplication-devel
 
