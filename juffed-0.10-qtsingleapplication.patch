@@ -1,0 +1,11 @@
+--- a/cmake/FindQtSingleApplication.cmake
++++ b/cmake/FindQtSingleApplication.cmake
+@@ -37,7 +37,7 @@
+         ENDIF()
+     ENDFOREACH()
+ 
+-    SET(QTSINGLEAPPLICATION_NAMES ${QTSINGLEAPPLICATION_NAMES} QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
++    SET(QTSINGLEAPPLICATION_NAMES ${QTSINGLEAPPLICATION_NAMES} Qt5Solutions_SingleApplication-2.6.1 libQt5Solutions_SingleApplication-2.6.1)
+     GET_TARGET_PROPERTY(QT5_WIDGETSLIBRARY Qt5::Widgets LOCATION)
+     GET_FILENAME_COMPONENT(QT5_WIDGETSLIBRARYPATH ${QT5_WIDGETSLIBRARY} PATH)
+ 

@@ -1,0 +1,50 @@
+--- a/plugins/todolist/CMakeLists.txt
++++ b/plugins/todolist/CMakeLists.txt
+@@ -1,7 +1,12 @@
+ # todolist
+-QT4_WRAP_CPP ( todolist_MOC TODOList.h TODOParser.h )
++if (USE_QT5)
++  QT5_WRAP_CPP ( todolist_MOC TODOList.h TODOParser.h )
++else (USE_QT5)
++  QT4_WRAP_CPP ( todolist_MOC TODOList.h TODOParser.h )
++endif (USE_QT5)
+ set ( todolist_SRC TODOList.cpp TODOParser.cpp )
+ 
+-add_library( todolist SHARED ${todolist_SRC} ${todolist_RES} ${todolist_MOC} )
++add_library( todolist SHARED ${todolist_SRC} ${todolist_RES} )
+ target_link_libraries(todolist ${JUFFED_LIBRARY} ${QT_LIBRARIES})
+ install(TARGETS todolist DESTINATION ${JUFFED_PLUGINS_DIR})
++
+--- a/plugins/todolist/TODOList.cpp
++++ b/plugins/todolist/TODOList.cpp
+@@ -5,9 +5,9 @@
+ #include "Log.h"
+ 
+ #include <QtCore>
+-#include <QtGui/QHeaderView>
+-#include <QtGui/QTreeWidget>
+-#include <QtGui/QVBoxLayout>
++#include <QtWidgets/QHeaderView>
++#include <QtWidgets/QTreeWidget>
++#include <QtWidgets/QVBoxLayout>
+ 
+ class TODOListPlugin::PluginInterior {
+ public:
+@@ -25,8 +25,8 @@
+ 		labels << "Line" << "Line Number" << "Column";
+ 		tree_->setHeaderLabels(labels);
+ 		tree_->setRootIsDecorated(false);
+-		tree_->header()->setResizeMode(0, QHeaderView::Stretch);
+-		tree_->header()->setResizeMode(1, QHeaderView::Fixed);
++		tree_->header()->setSectionResizeMode(0, QHeaderView::Stretch);
++		tree_->header()->setSectionResizeMode(1, QHeaderView::Fixed);
+ 		tree_->header()->setAutoScroll(true);
+ 		tree_->header()->setStretchLastSection(false);
+ 		tree_->header()->hide();
+@@ -156,4 +156,6 @@
+ 	api()->currentDocument()->setCursorPos(item->text(1).toInt() - 1, item->text(2).toInt());
+ }
+ 
++#if QT_VERSION < 0x050000
+ Q_EXPORT_PLUGIN2(todolist, TODOListPlugin)
++#endif
